@@ -1,7 +1,6 @@
 package org.App;
 import java.util.Date;
 import java.time.Duration;
-import java.time.Instant;
 import java.util.Calendar;
 
 
@@ -32,11 +31,7 @@ public class Inversion {
 
     public boolean terminada(){
         Date fecha_actual = new Date();
-        long hola = (finalizacion.getTime() - fecha_actual.getTime());
-        if ((finalizacion.getTime() - fecha_actual.getTime()) < 0){
-            return true;
-        }
-        return false;
+        return (finalizacion.getTime() - fecha_actual.getTime()) < 0;
     }
 
     public int getDineroConInteres(){
