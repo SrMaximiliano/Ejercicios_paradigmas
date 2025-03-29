@@ -35,31 +35,30 @@ public class Fiuba {
 
         int padron_o_legajo;
 
-        if (tipo_persona.equals("Profesor")) {
+        if (tipo_persona.equals("Profesor"))
             padron_o_legajo = profesores.size() +1;
-        }else{
+        else
             padron_o_legajo = alumnos.size() +1;
-        }
+
         T nueva_persona = factory.create(nombre, dni, padron_o_legajo);
         lista_personas.add(nueva_persona);
         return nueva_persona;
-
     }
 
     public Alumno addAlumno(@NotNull Persona integrante) {
-        return addPersona(integrante.getNombre(), integrante.getDni(), "Alumno", alumnos, (n, d, p) -> new Alumno(n, d, p));
+        return addPersona(integrante.getNombre(), integrante.getDni(), "Alumno", alumnos, Alumno::new);
     }
 
     public Alumno addAlumno(String nombre, int dni) {
-        return addPersona(nombre, dni, "Alumno", alumnos, (n, d, p) -> new Alumno(n, d, p));
+        return addPersona(nombre, dni, "Alumno", alumnos, Alumno::new);
     }
 
     public Profesor addProfesor(@NotNull Persona integrante) {
-        return addPersona(integrante.getNombre(), integrante.getDni(), "Profesor", profesores, (n, d, p) -> new Profesor(n, d, p));
+        return addPersona(integrante.getNombre(), integrante.getDni(), "Profesor", profesores, Profesor::new);
     }
 
     public Profesor addProfesor(String nombre, int dni) {
-        return addPersona(nombre, dni, "Profesor", profesores, (n, d, p) -> new Profesor(n, d, p));
+        return addPersona(nombre, dni, "Profesor", profesores, Profesor::new);
     }
 
     public List<Alumno> getAlumnos() {
@@ -70,7 +69,4 @@ public class Fiuba {
         return profesores;
     }
 
-    interface PersonaFactory<T> {
-        T create(String nombre, int dni, int nuevo_padron);
-    }
 }
